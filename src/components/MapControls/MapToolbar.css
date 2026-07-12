@@ -70,21 +70,15 @@
 .dot-content {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  overflow: hidden;
-  max-width: 0;
-  opacity: 0;
-  transition:
-    max-width 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity   0.18s ease,
-    margin    0.26s ease;
-  white-space: nowrap;
-  margin-left: 0;
+  gap: 0.35rem;
+  margin-left: 0.35rem;
 }
 
 .dot-icon {
   color: var(--dot-color, #fff);
   flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s;
 }
 
 .dot-label {
@@ -95,6 +89,10 @@
   text-transform: uppercase;
   font-family: 'Rajdhani', sans-serif;
   flex-shrink: 0;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
 }
 
 /* ── ACTIVE: square glows + content expands ───────────────────── */
@@ -112,10 +110,13 @@
   animation: cyberPip 1.5s ease-in-out infinite;
 }
 
-.dot-btn.dot-active .dot-content {
+.dot-btn.dot-active .dot-icon {
+  opacity: 1;
+}
+
+.dot-btn.dot-active .dot-label {
   max-width: 110px;
   opacity: 1;
-  margin-left: 0.32rem;
 }
 
 /* ── Hover on inactive ────────────────────────────────────────── */
@@ -126,10 +127,13 @@
   box-shadow: 0 0 6px var(--dot-color, rgba(255,255,255,0.5));
 }
 
-.dot-btn:not(.dot-active):hover .dot-content {
+.dot-btn:not(.dot-active):hover .dot-icon {
+  opacity: 0.8;
+}
+
+.dot-btn:not(.dot-active):hover .dot-label {
   max-width: 90px;
   opacity: 0.55;
-  margin-left: 0.28rem;
 }
 
 /* Clear button */
