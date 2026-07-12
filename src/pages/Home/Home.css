@@ -13,9 +13,8 @@
   font-size: 3.5rem;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #fff 0%, #a5a5b9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .hero-subtitle {
@@ -59,7 +58,7 @@
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
 .feature-header {
@@ -103,16 +102,16 @@
 .text-orange { color: var(--accent-orange); }
 .text-green { color: var(--accent-green); }
 
-.card-cyan:hover { border-color: rgba(6, 214, 208, 0.4); }
+.card-cyan:hover { border-color: var(--accent-cyan); }
 .card-cyan:hover .feature-algorithm { color: var(--accent-cyan); }
 
-.card-purple:hover { border-color: rgba(155, 89, 247, 0.4); }
+.card-purple:hover { border-color: var(--accent-purple); }
 .card-purple:hover .feature-algorithm { color: var(--accent-purple); }
 
-.card-orange:hover { border-color: rgba(247, 159, 7, 0.4); }
+.card-orange:hover { border-color: var(--accent-orange); }
 .card-orange:hover .feature-algorithm { color: var(--accent-orange); }
 
-.card-green:hover { border-color: rgba(7, 247, 155, 0.4); }
+.card-green:hover { border-color: var(--accent-green); }
 .card-green:hover .feature-algorithm { color: var(--accent-green); }
 
 @media (max-width: 768px) {

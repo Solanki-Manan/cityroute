@@ -2,62 +2,54 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: rgba(10, 11, 15, 0.92);
-  border: 1px solid rgba(0, 207, 255, 0.2);
-  padding: 0.38rem 0.85rem;
-  border-radius: 3px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--neon-blue);
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
   z-index: 10;
-  box-shadow: 0 0 14px rgba(0,207,255,0.12);
-  text-shadow: 0 0 6px rgba(0,207,255,0.5);
-  letter-spacing: 0.04em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   backdrop-filter: blur(10px);
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
 }
 
 .alert-warning {
-  background: rgba(255, 109, 0, 0.06);
-  border-color: rgba(255, 109, 0, 0.25);
-  box-shadow: 0 0 12px rgba(255,109,0,0.08);
+  background: rgba(203, 75, 22, 0.05);
+  border-color: rgba(203, 75, 22, 0.2);
+  box-shadow: none;
 }
 
 .alert-warning h4 {
-  font-family: 'Orbitron', monospace;
+  font-family: var(--font-ui);
   color: var(--neon-orange);
-  margin-bottom: 0.4rem;
-  font-size: 0.72rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 8px rgba(255,109,0,0.5);
+  font-weight: 700;
 }
 
 .error-tag {
-  background: rgba(255, 23, 68, 0.08) !important;
+  background: rgba(220, 50, 47, 0.08) !important;
   color: var(--neon-red) !important;
-  border: 1px solid rgba(255,23,68,0.25) !important;
-  font-family: 'Share Tech Mono', monospace !important;
-  text-shadow: 0 0 6px rgba(255,23,68,0.4) !important;
+  border: 1px solid rgba(220, 50, 47, 0.2) !important;
 }
 
 .negative-cycle-alert {
-  background: rgba(255, 23, 68, 0.07);
+  background: rgba(220, 50, 47, 0.05);
   color: var(--neon-red);
-  padding: 0.85rem;
-  border-radius: 3px;
-  border: 1px solid rgba(255,23,68,0.25);
-  border-left: 2px solid var(--neon-red);
-  margin-top: 0.85rem;
-  box-shadow: 0 0 14px rgba(255,23,68,0.1);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(220, 50, 47, 0.2);
+  border-left: 3px solid var(--neon-red);
+  margin-top: 1rem;
 }
 
 .negative-cycle-alert p {
   margin-top: 0.4rem;
-  font-size: 0.75rem;
-  font-family: 'Share Tech Mono', monospace;
-  opacity: 0.85;
+  font-size: 0.85rem;
 }
