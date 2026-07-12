@@ -1,0 +1,184 @@
+/* ── DOT TOOLBAR — Cyberpunk Edition ───────────────────────────── */
+
+/* Top-left corner */
+.map-toolbar-wrapper {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  pointer-events: none;
+}
+.map-toolbar-wrapper > * { pointer-events: auto; }
+
+/* ── Rail ─────────────────────────────────────────────────────── */
+.dot-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.26rem 0.36rem;
+  background: rgba(10, 11, 15, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(247, 0, 255, 0.2);
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 4px 20px rgba(0,0,0,0.7),
+    0 0 12px rgba(247,0,255,0.08);
+  /* Cut corner — cyberpunk style */
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+/* ── Separator ────────────────────────────────────────────────── */
+.dot-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(247, 0, 255, 0.2);
+  margin: 0 0.1rem;
+  flex-shrink: 0;
+}
+
+/* ── Dot button ───────────────────────────────────────────────── */
+.dot-btn {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 24px;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: all 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  background: transparent;
+  padding: 0 5px;
+}
+
+/* ── The dot ─────────────────────────────────────────────────── */
+.dot-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;  /* Square dots for cyber look */
+  background: var(--dot-color, rgba(255,255,255,0.2));
+  flex-shrink: 0;
+  transition: all 0.22s ease;
+  opacity: 0.45;
+}
+
+/* ── Expanded content ─────────────────────────────────────────── */
+.dot-content {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition:
+    max-width 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity   0.18s ease,
+    margin    0.26s ease;
+  white-space: nowrap;
+  margin-left: 0;
+}
+
+.dot-icon {
+  color: var(--dot-color, #fff);
+  flex-shrink: 0;
+}
+
+.dot-label {
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: var(--dot-color, var(--text-primary));
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-family: 'Rajdhani', sans-serif;
+  flex-shrink: 0;
+}
+
+/* ── ACTIVE: square glows + content expands ───────────────────── */
+.dot-btn.dot-active {
+  background: color-mix(in srgb, var(--dot-color) 12%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dot-color) 50%, transparent);
+}
+
+.dot-btn.dot-active .dot-pip {
+  opacity: 1;
+  border-radius: 2px;
+  box-shadow:
+    0 0 6px  var(--dot-color),
+    0 0 14px color-mix(in srgb, var(--dot-color) 60%, transparent);
+  animation: cyberPip 1.5s ease-in-out infinite;
+}
+
+.dot-btn.dot-active .dot-content {
+  max-width: 110px;
+  opacity: 1;
+  margin-left: 0.32rem;
+}
+
+/* ── Hover on inactive ────────────────────────────────────────── */
+.dot-btn:not(.dot-active):hover .dot-pip {
+  opacity: 0.9;
+  transform: scale(1.4);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--dot-color, rgba(255,255,255,0.5));
+}
+
+.dot-btn:not(.dot-active):hover .dot-content {
+  max-width: 90px;
+  opacity: 0.55;
+  margin-left: 0.28rem;
+}
+
+/* Clear button */
+.dot-btn.dot-clear .dot-label  { color: var(--text-secondary); }
+.dot-btn.dot-clear:hover .dot-pip { background: var(--neon-red); opacity: 1; }
+
+@keyframes cyberPip {
+  0%, 100% {
+    box-shadow: 0 0 5px  var(--dot-color), 0 0 10px color-mix(in srgb, var(--dot-color) 50%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--dot-color), 0 0 20px color-mix(in srgb, var(--dot-color) 70%, transparent),
+                0 0 30px color-mix(in srgb, var(--dot-color) 30%, transparent);
+  }
+}
+
+/* ── Hint bar ─────────────────────────────────────────────────── */
+.dot-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.22rem 0.65rem;
+  background: rgba(10, 11, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(247, 0, 255, 0.15);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  max-width: 340px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.05em;
+  font-family: 'Share Tech Mono', monospace;
+  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 0 100%);
+}
+
+.dot-hint svg { color: var(--hint-color, var(--neon-magenta)); flex-shrink: 0; }
+
+.dot-hint.hint-active {
+  background: color-mix(in srgb, var(--hint-color, var(--neon-blue)) 8%, rgba(10,11,15,0.95));
+  border-color: color-mix(in srgb, var(--hint-color, var(--neon-blue)) 40%, transparent);
+  color: var(--hint-color, var(--neon-blue));
+  font-weight: 600;
+  text-shadow: 0 0 8px currentColor;
+  animation: hintScan 2s ease-in-out infinite;
+}
+
+@keyframes hintScan {
+  0%, 100% { box-shadow: none; }
+  50%       { box-shadow: 0 0 10px color-mix(in srgb, var(--hint-color) 25%, transparent); }
+}

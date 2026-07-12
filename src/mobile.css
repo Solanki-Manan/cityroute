@@ -1,0 +1,20 @@
+@media (max-width: 768px) {
+  .page-layout {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .map-section {
+    height: 50vh;
+  }
+  
+  .panel-section {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  
+  .nav-links {
+    display: none; /* simple mobile hide for now, could add hamburger */
+  }
+}

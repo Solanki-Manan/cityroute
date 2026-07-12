@@ -1,0 +1,63 @@
+.map-overlay-instructions {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(10, 11, 15, 0.92);
+  border: 1px solid rgba(0, 207, 255, 0.2);
+  padding: 0.38rem 0.85rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--neon-blue);
+  z-index: 10;
+  box-shadow: 0 0 14px rgba(0,207,255,0.12);
+  text-shadow: 0 0 6px rgba(0,207,255,0.5);
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(10px);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+.alert-warning {
+  background: rgba(255, 109, 0, 0.06);
+  border-color: rgba(255, 109, 0, 0.25);
+  box-shadow: 0 0 12px rgba(255,109,0,0.08);
+}
+
+.alert-warning h4 {
+  font-family: 'Orbitron', monospace;
+  color: var(--neon-orange);
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px rgba(255,109,0,0.5);
+}
+
+.error-tag {
+  background: rgba(255, 23, 68, 0.08) !important;
+  color: var(--neon-red) !important;
+  border: 1px solid rgba(255,23,68,0.25) !important;
+  font-family: 'Share Tech Mono', monospace !important;
+  text-shadow: 0 0 6px rgba(255,23,68,0.4) !important;
+}
+
+.negative-cycle-alert {
+  background: rgba(255, 23, 68, 0.07);
+  color: var(--neon-red);
+  padding: 0.85rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255,23,68,0.25);
+  border-left: 2px solid var(--neon-red);
+  margin-top: 0.85rem;
+  box-shadow: 0 0 14px rgba(255,23,68,0.1);
+}
+
+.negative-cycle-alert p {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-family: 'Share Tech Mono', monospace;
+  opacity: 0.85;
+}

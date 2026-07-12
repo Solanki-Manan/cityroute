@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&display=swap');
+@import './mobile.css';
+
+:root {
+  /* ── NEON CITY / CYBERPUNK ─────────────────────────────────────
+     Dark concrete base · hot magenta · electric yellow · neon blue
+     High contrast, loud, rain-slicked city at night
+  ────────────────────────────────────────────────────────────── */
+
+  /* Backgrounds — concrete dark */
+  --bg-primary:   #0a0b0f;
+  --bg-secondary: #0f1016;
+  --bg-tertiary:  #14151d;
+  --bg-glass:     rgba(15, 16, 22, 0.9);
+  --border:       rgba(247, 0, 255, 0.15);
+  --border-hover: rgba(247, 0, 255, 0.4);
+
+  /* ── Core neon trio ─────────────────────────────────────────── */
+  --neon-magenta: #f700ff;   /* HOT magenta – primary */
+  --neon-yellow:  #ffe500;   /* Electric yellow – secondary */
+  --neon-blue:    #00cfff;   /* Neon blue – tertiary */
+  --neon-green:   #39ff14;   /* Matrix green – success */
+  --neon-red:     #ff1744;   /* Danger red */
+  --neon-orange:  #ff6d00;   /* Warning orange */
+
+  /* Legacy aliases so existing components work */
+  --accent-blue:   var(--neon-blue);
+  --accent-cyan:   var(--neon-blue);
+  --accent-purple: var(--neon-magenta);
+  --accent-orange: var(--neon-orange);
+  --accent-green:  var(--neon-green);
+  --accent-red:    var(--neon-red);
+  --accent-yellow: var(--neon-yellow);
+  --accent-primary: var(--neon-magenta);
+  --accent-mint:    var(--neon-blue);
+  --accent-rose:    var(--neon-magenta);
+  --accent-gold:    var(--neon-yellow);
+  --accent-violet:  var(--neon-magenta);
+  --accent-pink:    var(--neon-magenta);
+
+  /* Node colours */
+  --node-hospital: #ff1744;
+  --node-fire:     #ff6d00;
+  --node-police:   #00cfff;
+  --node-airport:  #f700ff;
+  --node-zone:     #546e7a;
+
+  /* Gradients */
+  --grad-magenta:  linear-gradient(135deg, #f700ff, #8b00ff);
+  --grad-yellow:   linear-gradient(135deg, #ffe500, #ff6d00);
+  --grad-blue:     linear-gradient(135deg, #00cfff, #0050ff);
+  --grad-cyber:    linear-gradient(135deg, #f700ff, #ffe500);
+  --grad-danger:   linear-gradient(135deg, #ff1744, #f700ff);
+  --grad-primary:  linear-gradient(135deg, #f700ff, #8b00ff);
+
+  /* Text */
+  --text-primary:   #e8f0ff;
+  --text-secondary: #5a6480;
+  --text-muted:     #2d3148;
+
+  /* Typography — cyberpunk fonts */
+  --font-ui:   'Rajdhani', system-ui, sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-display: 'Orbitron', monospace;
+
+  /* Glow shadows */
+  --glow-magenta:  0 0 20px rgba(247,0,255,0.5),  0 0 40px rgba(247,0,255,0.2);
+  --glow-yellow:   0 0 20px rgba(255,229,0,0.5),  0 0 40px rgba(255,229,0,0.2);
+  --glow-blue:     0 0 20px rgba(0,207,255,0.5),  0 0 40px rgba(0,207,255,0.2);
+  --glow-green:    0 0 20px rgba(57,255,20,0.5),  0 0 40px rgba(57,255,20,0.2);
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background:
+    /* Scanline overlay texture */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    ),
+    /* Magenta ambient glow top-left */
+    radial-gradient(ellipse at 0%   0%,   rgba(247,0,255,0.08) 0%, transparent 50%),
+    /* Blue ambient glow bottom-right */
+    radial-gradient(ellipse at 100% 100%, rgba(0,207,255,0.07) 0%, transparent 50%),
+    /* Yellow center pulse */
+    radial-gradient(ellipse at 50%  50%,  rgba(255,229,0,0.03)  0%, transparent 65%),
+    var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+a { color: var(--neon-blue); text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+/* ── Scrollbars ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--neon-magenta), var(--neon-blue));
+  border-radius: 2px;
+}
+* { scrollbar-width: thin; scrollbar-color: var(--neon-magenta) transparent; }
+
+/* ── Card ───────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem;
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cyber corner cuts on cards */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  background: var(--neon-magenta);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.7;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 0.4rem; padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-weight: 700; font-size: 0.82rem; transition: all 0.2s ease;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  font-family: var(--font-ui);
+}
+
+.btn-primary {
+  background: var(--grad-magenta);
+  color: #fff;
+  box-shadow: var(--glow-magenta);
+  border: 1px solid rgba(247,0,255,0.5);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(247,0,255,0.7), 0 0 60px rgba(247,0,255,0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Utils ──────────────────────────────────────────────────────── */
+.w-full { width: 100%; }
+.flex { display: flex; } .flex-col { flex-direction: column; }
+.items-center { align-items: center; } .justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; } .text-center { text-align: center; }
+.mt-4 { margin-top: 1rem; } .mt-8 { margin-top: 2rem; } .mb-4 { margin-bottom: 1rem; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+/* ── Glitch text effect ─────────────────────────────────────────── */
+.text-gradient {
+  background: var(--grad-cyber);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.text-gradient-gold {
+  background: var(--grad-yellow);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ── Neon border utility ─────────────────────────────────────────── */
+.neon-border-magenta { border-color: rgba(247,0,255,0.4) !important; box-shadow: 0 0 8px rgba(247,0,255,0.2); }
+.neon-border-blue    { border-color: rgba(0,207,255,0.4) !important; box-shadow: 0 0 8px rgba(0,207,255,0.2); }
+.neon-border-yellow  { border-color: rgba(255,229,0,0.4) !important; box-shadow: 0 0 8px rgba(255,229,0,0.2); }
