@@ -37,16 +37,18 @@ const TrafficReroute = () => {
     
     // When finished or not started, show the final shortest path tree
     const treeEdges = [];
-    Object.keys(algoResult.predecessors).forEach(nodeId => {
-      const predId = algoResult.predecessors[nodeId];
-      if (predId !== null) {
-        const edge = edges.find(e => 
-          (e.u === Number(predId) && e.v === Number(nodeId)) || 
-          (e.u === Number(nodeId) && e.v === Number(predId))
-        );
-        if (edge) treeEdges.push(edge);
-      }
-    });
+    if (algoResult.previous) {
+      Object.keys(algoResult.previous).forEach(nodeId => {
+        const predId = algoResult.previous[nodeId];
+        if (predId !== null) {
+          const edge = edges.find(e => 
+            (e.u === Number(predId) && e.v === Number(nodeId)) || 
+            (e.u === Number(nodeId) && e.v === Number(predId))
+          );
+          if (edge) treeEdges.push(edge);
+        }
+      });
+    }
     return treeEdges;
   }, [algoResult, currentStepData, currentStep, totalSteps, edges]);
 
