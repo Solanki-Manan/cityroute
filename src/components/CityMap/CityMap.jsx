@@ -216,7 +216,7 @@ export default function CityMap({
         const isTraffic   = d.w > d.originalW;
         if (isHighlight) return isTraffic ? 'var(--accent-red)' : 'var(--accent-cyan)';
         if (isTraffic)   return 'var(--accent-orange)';
-        return 'var(--border-hover)';
+        return 'rgba(0, 207, 255, 0.3)';
       })
       .attr('stroke-width', d => {
         const isHighlight = highlightedEdges.some(h => (h.u === d.u && h.v === d.v) || (h.u === d.v && h.v === d.u));
@@ -232,8 +232,8 @@ export default function CityMap({
       .attr('x',      d => { const u = nodes.find(n => n.id === d.u); const v = nodes.find(n => n.id === d.v); return u && v ? (u.x + v.x) / 2 - 12 : 0; })
       .attr('y',      d => { const u = nodes.find(n => n.id === d.u); const v = nodes.find(n => n.id === d.v); return u && v ? (u.y + v.y) / 2 - 12 : 0; })
       .attr('width',  24).attr('height', 24)
-      .attr('fill',   'var(--bg-secondary)').attr('rx', 4)
-      .attr('stroke', 'var(--border)');
+      .attr('fill',   'rgba(10, 11, 15, 0.95)').attr('rx', 4)
+      .attr('stroke', 'rgba(0, 207, 255, 0.35)');
 
     edgeGroups.append('text')
       .attr('class', 'edge-label')
@@ -243,7 +243,7 @@ export default function CityMap({
       .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
       .attr('fill', d => {
         if (d.w > d.originalW) return 'var(--accent-red)';
-        return d.w > 30 ? 'var(--accent-orange)' : 'var(--text-primary)';
+        return d.w > 30 ? 'var(--accent-orange)' : 'var(--neon-blue)';
       })
       .attr('font-size', '12px')
       .attr('font-weight', d => d.w > d.originalW ? 'bold' : '600')

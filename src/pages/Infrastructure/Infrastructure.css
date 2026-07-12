@@ -26,7 +26,7 @@
 
 .savings-badge {
   margin-top: 0.5rem;
-  background-color: rgba(133, 153, 0, 0.1);
+  background-color: rgba(7, 247, 155, 0.1);
   color: var(--accent-green);
   text-align: center;
   padding: 0.5rem;
@@ -63,14 +63,14 @@
   background-color: var(--accent-green);
 }
 .edge-status-card.accept {
-  border-color: rgba(133, 153, 0, 0.3);
+  border-color: rgba(7, 247, 155, 0.3);
 }
 
 .edge-status-card.reject .status-indicator {
   background-color: var(--accent-red);
 }
 .edge-status-card.reject {
-  border-color: rgba(220, 50, 47, 0.3);
+  border-color: rgba(247, 79, 79, 0.3);
 }
 
 @keyframes pulse {
