@@ -201,6 +201,17 @@ export default function CityMap({
         }
       });
 
+    // Outer dotted red line for traffic
+    edgeGroups.append('line')
+      .attr('class', 'traffic-outline')
+      .attr('x1', d => nodes.find(n => n.id === d.u)?.x || 0)
+      .attr('y1', d => nodes.find(n => n.id === d.u)?.y || 0)
+      .attr('x2', d => nodes.find(n => n.id === d.v)?.x || 0)
+      .attr('y2', d => nodes.find(n => n.id === d.v)?.y || 0)
+      .attr('stroke', d => (d.w > d.originalW) ? 'var(--accent-red)' : 'none')
+      .attr('stroke-width', 8)
+      .attr('stroke-dasharray', '4,4');
+
     edgeGroups.append('line')
       .attr('class', 'edge-line')
       .attr('x1', d => nodes.find(n => n.id === d.u)?.x || 0)
@@ -213,9 +224,7 @@ export default function CityMap({
         const isMst = mstEdges.some(m => (m.u === d.u && m.v === d.v) || (m.u === d.v && m.v === d.u));
         if (isMst) return 'var(--accent-green)';
         const isHighlight = highlightedEdges.some(h => (h.u === d.u && h.v === d.v) || (h.u === d.v && h.v === d.u));
-        const isTraffic   = d.w > d.originalW;
-        if (isHighlight) return isTraffic ? 'var(--accent-red)' : 'var(--accent-cyan)';
-        if (isTraffic)   return 'var(--accent-orange)';
+        if (isHighlight) return '#007bff'; // Blue line for the fast route
         return 'rgba(0, 207, 255, 0.3)';
       })
       .attr('stroke-width', d => {
