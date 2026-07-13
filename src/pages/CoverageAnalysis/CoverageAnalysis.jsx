@@ -11,13 +11,20 @@ const CoverageAnalysis = () => {
   const { nodes, edges, updateNodePos } = useGraph();
   const [algoResult, setAlgoResult] = useState(null);
   
+  // Use base edges without traffic for coverage analysis
+  const baseEdges = useMemo(() => edges.map(e => ({
+    ...e,
+    w: e.originalW !== undefined ? e.originalW : e.w
+  })), [edges]);
+
+  
   const { 
     currentStep, isPlaying, speed, setSpeed, 
     play, pause, next, prev, reset, totalSteps, currentStepData 
   } = useAlgorithm(algoResult?.snapshots || []);
 
   const handleRunAnalysis = () => {
-    const result = floydWarshall(nodes, edges);
+    const result = floydWarshall(nodes, baseEdges);
     setAlgoResult(result);
     reset();
   };
@@ -78,7 +85,7 @@ const CoverageAnalysis = () => {
         {/* We can pass coverage scores to map later if we want heat overlays, but for now we'll just show them in the table */}
         <CityMap 
           nodes={nodes}
-          edges={edges}
+          edges={baseEdges}
           highlightedNodes={highlightedNodes}
           onNodeDragEnd={updateNodePos}
         />

@@ -12,6 +12,13 @@ const TrafficReroute = () => {
   
   const [sourceId, setSourceId] = useState(nodes[0]?.id || 0);
   const [algoResult, setAlgoResult] = useState(null);
+
+  // Use base edges without live traffic for reroute planning (focusing on blocked roads)
+  const baseEdges = useMemo(() => edges.map(e => ({
+    ...e,
+    w: e.originalW !== undefined ? e.originalW : e.w
+  })), [edges]);
+
   
   const { 
     currentStep, isPlaying, speed, setSpeed, 
@@ -19,7 +26,7 @@ const TrafficReroute = () => {
   } = useAlgorithm(algoResult?.steps || []);
 
   const handleRunAlgorithm = () => {
-    const result = bellmanFord(nodes, edges, sourceId);
+    const result = bellmanFord(nodes, baseEdges, sourceId);
     setAlgoResult(result);
     reset();
   };
@@ -41,7 +48,7 @@ const TrafficReroute = () => {
       Object.keys(algoResult.previous).forEach(nodeId => {
         const predId = algoResult.previous[nodeId];
         if (predId !== null) {
-          const edge = edges.find(e => 
+          const edge = baseEdges.find(e => 
             (e.u === Number(predId) && e.v === Number(nodeId)) || 
             (e.u === Number(nodeId) && e.v === Number(predId))
           );
@@ -50,7 +57,7 @@ const TrafficReroute = () => {
       });
     }
     return treeEdges;
-  }, [algoResult, currentStepData, currentStep, totalSteps, edges]);
+  }, [algoResult, currentStepData, currentStep, totalSteps, baseEdges]);
 
   const unreachableZones = useMemo(() => {
     if (!algoResult) return [];
@@ -67,7 +74,7 @@ const TrafficReroute = () => {
         </div>
         <CityMap 
           nodes={nodes}
-          edges={edges}
+          edges={baseEdges}
           highlightedEdges={highlightedEdges}
           onNodeDragEnd={updateNodePos}
           onEdgeClick={(e) => {

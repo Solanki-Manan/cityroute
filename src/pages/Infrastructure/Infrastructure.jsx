@@ -11,13 +11,20 @@ const Infrastructure = () => {
   const { nodes, edges, updateNodePos, toggleBlockEdge } = useGraph();
   const [algoResult, setAlgoResult] = useState(null);
   
+  // Use base edges without traffic for infrastructure planning
+  const baseEdges = useMemo(() => edges.map(e => ({
+    ...e,
+    w: e.originalW !== undefined ? e.originalW : e.w
+  })), [edges]);
+
+  
   const { 
     currentStep, isPlaying, speed, setSpeed, 
     play, pause, next, prev, reset, totalSteps, currentStepData 
   } = useAlgorithm(algoResult?.steps || []);
 
   const handleRunAlgorithm = () => {
-    const result = kruskal(nodes, edges);
+    const result = kruskal(nodes, baseEdges);
     setAlgoResult(result);
     reset();
   };
@@ -42,8 +49,8 @@ const Infrastructure = () => {
 
   // Calculate costs
   const fullNetworkCost = useMemo(() => {
-    return edges.filter(e => !e.blocked).reduce((sum, e) => sum + e.w, 0);
-  }, [edges]);
+    return baseEdges.filter(e => !e.blocked).reduce((sum, e) => sum + e.w, 0);
+  }, [baseEdges]);
   
   const currentMstCost = currentStepData?.totalCost ?? algoResult?.totalCost ?? 0;
   const savings = algoResult && !currentStepData ? fullNetworkCost - currentMstCost : 0;
@@ -57,7 +64,7 @@ const Infrastructure = () => {
         </div>
         <CityMap 
           nodes={nodes}
-          edges={edges}
+          edges={baseEdges}
           mstEdges={mstEdges}
           highlightedEdges={highlightedEdges}
           onNodeDragEnd={updateNodePos}
