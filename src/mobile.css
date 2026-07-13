@@ -1,20 +1,69 @@
 @media (max-width: 768px) {
-  .page-layout {
+  /* Navbar tweaks for mobile */
+  .navbar-container {
     flex-direction: column;
     height: auto;
-  }
-  
-  .map-section {
-    height: 50vh;
-  }
-  
-  .panel-section {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    align-items: flex-start;
   }
   
   .nav-links {
-    display: none; /* simple mobile hide for now, could add hamburger */
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* hide scrollbar for cleaner look */
+  }
+  
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .nav-link {
+    white-space: nowrap;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  /* Core layout stacking */
+  .page-layout {
+    flex-direction: column;
+    /* 5.5rem approx height of the new stacked navbar */
+    height: calc(100vh - 5.5rem) !important;
+    overflow: hidden;
+  }
+  
+  .map-section {
+    flex: 1 1 45%;
+    min-height: 0; /* allows it to shrink below its content if needed, though map handles it */
+    padding: 0.3rem !important;
+  }
+  
+  .panel-section {
+    width: 100% !important;
+    min-width: 100% !important;
+    flex: 1 1 55%;
+    border-left: none !important;
+    border-top: 2px solid var(--neon-magenta) !important;
+    padding: 0.6rem !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0 -4px 15px rgba(247, 0, 255, 0.1);
+  }
+
+  /* Make controls more touch friendly */
+  .btn {
+    padding: 0.7rem 1rem;
+  }
+  select {
+    padding: 0.6rem;
+  }
+  
+  /* Hide the vertical accent line on mobile panel */
+  .panel-section::before {
+    display: none;
   }
 }
