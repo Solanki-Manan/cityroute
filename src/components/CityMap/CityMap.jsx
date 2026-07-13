@@ -201,14 +201,14 @@ export default function CityMap({
         }
       });
 
-    // Outer dotted red line for traffic
+    // Outer dotted orange line for traffic
     edgeGroups.append('line')
       .attr('class', 'traffic-outline')
       .attr('x1', d => nodes.find(n => n.id === d.u)?.x || 0)
       .attr('y1', d => nodes.find(n => n.id === d.u)?.y || 0)
       .attr('x2', d => nodes.find(n => n.id === d.v)?.x || 0)
       .attr('y2', d => nodes.find(n => n.id === d.v)?.y || 0)
-      .attr('stroke', d => (d.w > d.originalW) ? 'var(--accent-red)' : 'none')
+      .attr('stroke', d => (d.w > d.originalW) ? 'var(--accent-orange)' : 'none')
       .attr('stroke-width', 8)
       .attr('stroke-dasharray', '4,4');
 

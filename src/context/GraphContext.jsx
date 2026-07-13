@@ -38,6 +38,12 @@ export const GraphProvider = ({ children }) => {
 
   const [isTrafficActive, setIsTrafficActive] = useState(false);
 
+  // Emergency Routing persistent state
+  const [emergencySourceId, setEmergencySourceId] = useState(null);
+  const [emergencyTargetId, setEmergencyTargetId] = useState('nearest-hospital');
+  const [emergencyResolvedTargetId, setEmergencyResolvedTargetId] = useState(null);
+  const [emergencyAlgoResult, setEmergencyAlgoResult] = useState(null);
+
   // Sync to local storage on change
   useEffect(() => {
     // Only save the structural data, don't save traffic state so it resets on load
@@ -125,7 +131,11 @@ export const GraphProvider = ({ children }) => {
       nodes, edges, isTrafficActive, toggleTraffic,
       addNode, updateNodePos, removeNode,
       addEdge, toggleBlockEdge, removeEdge,
-      resetToDefault, clearAll
+      resetToDefault, clearAll,
+      emergencySourceId, setEmergencySourceId,
+      emergencyTargetId, setEmergencyTargetId,
+      emergencyResolvedTargetId, setEmergencyResolvedTargetId,
+      emergencyAlgoResult, setEmergencyAlgoResult
     }}>
       {children}
     </GraphContext.Provider>

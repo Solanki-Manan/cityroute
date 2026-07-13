@@ -11,13 +11,21 @@ const EmergencyRoute = () => {
   const { 
     nodes, edges, updateNodePos, 
     addNode, addEdge, removeNode, removeEdge, clearAll,
-    isTrafficActive, toggleTraffic 
+    isTrafficActive, toggleTraffic,
+    emergencySourceId, setEmergencySourceId,
+    emergencyTargetId, setEmergencyTargetId,
+    emergencyResolvedTargetId, setEmergencyResolvedTargetId,
+    emergencyAlgoResult, setEmergencyAlgoResult
   } = useGraph();
   
-  const [sourceId, setSourceId] = useState(nodes[0]?.id || 0);
-  const [targetId, setTargetId] = useState('nearest-hospital');
-  const [resolvedTargetId, setResolvedTargetId] = useState(null);
-  const [algoResult, setAlgoResult] = useState(null);
+  const sourceId = emergencySourceId !== null ? emergencySourceId : (nodes[0]?.id || 0);
+  const setSourceId = setEmergencySourceId;
+  const targetId = emergencyTargetId;
+  const setTargetId = setEmergencyTargetId;
+  const resolvedTargetId = emergencyResolvedTargetId;
+  const setResolvedTargetId = setEmergencyResolvedTargetId;
+  const algoResult = emergencyAlgoResult;
+  const setAlgoResult = setEmergencyAlgoResult;
   
   const { 
     currentStep, isPlaying, speed, setSpeed, 
